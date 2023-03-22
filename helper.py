@@ -1,11 +1,7 @@
-import datetime
-import time
+import random
+import string
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.common.keys import Keys
 
 def initDriverOption(Headless = False):
     options = Options()
@@ -17,3 +13,15 @@ def initDriverOption(Headless = False):
     options.headless = Headless # Run without ui 
     options.add_argument('--disable-gpu')  # Last I checked this was necessary.
     return options
+
+def rs(length):
+    """
+    Generate a random string of a given length.
+    
+    Args:
+        length (int): The desired length of the string.
+    
+    Returns:
+        A random string of the specified length.
+    """
+    return ''.join(random.choices(string.ascii_letters, k=length))
