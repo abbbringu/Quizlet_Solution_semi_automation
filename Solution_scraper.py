@@ -7,7 +7,7 @@ from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
 from helper import initDriverOption, rs
 
-pageUrl = "https://quizlet.com/explanations/textbook-solutions/electrical-engineering-principles-and-applications-international-edition-6th-edition-9780273793250"
+pageUrl = "https://quizlet.com/explanations/textbook-solutions/electrical-engineering-principles-and-applications-6th-edition-9780133116649"
 
 if __name__ == '__main__':
     # Get local data    
@@ -20,12 +20,16 @@ if __name__ == '__main__':
     print("Make sure your browser is zoomed out to 80%")
 
     while True:
-        
+        print("Extractin a exercise!")
         # Going to the page and clicking away coockies. 
         driver.get(pageUrl)
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH,'//button[@id="onetrust-accept-btn-handler"]'))).click()
-        input("Choose which exercise to copy, press enter when you are ready! ")
-
+        # input("Choose which exercise to copy, press enter when you are ready! ")
+        while True:
+            if "problems" in driver.current_url:
+                print("we have a problem")
+                break
+        exerURL = driver.current_url
         # Clicking on sign in with email 
         driver.find_element(By.XPATH,"//button[@aria-label='Sign up with email']").click()
 
@@ -40,7 +44,7 @@ if __name__ == '__main__':
         
         # Fills the birth year
         driver.find_element(By.XPATH,"//div/select[@aria-label='birth_year']").click()
-        driver.find_element(By.XPATH,"//div/select[@aria-label='birth_year']/option[25]").click()
+        driver.find_element(By.XPATH,"//div/select[@aria-label='birth_year']/option[2]").click()
 
         # Fills mail, password and username
         mail = driver.find_element(By.XPATH,"//input[@id='email']")
@@ -60,10 +64,11 @@ if __name__ == '__main__':
 
         driver.find_element(By.XPATH,"//button[@type='submit']").click()
 
-
-        time.sleep(4)
-        driver.execute_script("window.history.go(-1)")
-        
+        while True:
+            if driver.current_url == pageUrl:
+                driver.get(exerURL)
+                break
+        print("Gonig back")
         option = input("Next action:\nq     | quit \nenter | continue\n> ")
         if option == 'q':
             break
