@@ -20,14 +20,12 @@ if __name__ == '__main__':
     print("Make sure your browser is zoomed out to 80%")
 
     while True:
-        print("Extractin a exercise!")
         # Going to the page and clicking away coockies. 
         driver.get(pageUrl)
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH,'//button[@id="onetrust-accept-btn-handler"]'))).click()
         # input("Choose which exercise to copy, press enter when you are ready! ")
         while True:
             if "problems" in driver.current_url:
-                print("we have a problem")
                 break
         exerURL = driver.current_url
         # Clicking on sign in with email 
@@ -68,7 +66,6 @@ if __name__ == '__main__':
             if driver.current_url == pageUrl:
                 driver.get(exerURL)
                 break
-        print("Gonig back")
         option = input("Next action:\nq     | quit \nenter | continue\n> ")
         if option == 'q':
             break
