@@ -8,6 +8,7 @@ Quizlet has collections of solutions that are typically limited to subscribed us
 <div align="center">
     <img src="./img/quizlet_scraper.gif" alt="image" width="800px" style="border-radius: 10px"/>
 </div>
+
 ## Installation
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install all the necessary packages.
